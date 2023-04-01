@@ -18,5 +18,3 @@ exports.checkForGame = (original, linkedList) => {
 
     return isReady;
 }
-
-exports.checkNode = (original, linkedList)

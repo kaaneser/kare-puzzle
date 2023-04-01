@@ -1,14 +1,7 @@
 const PuzzleModel = require('../../model/puzzle_model');
 const LinkedList = require('../../model/linked_list');
-const Comparator = require('../../utils/compare_linked_lists');
-
-/*
-
-    TODO:
-    Shuffle -> İki linklist karşılaştır, en az birinin aynı konumda olması lazım.
-    Switch -> Doğru yerdeyse kilitlememiz lazım.
-
-*/
+const Comparator = require('../../utils/comparator');
+const PiecePrep = require('../../utils/piece_prep');
 
 var original = new LinkedList();
 var linkedList = new LinkedList();
@@ -19,19 +12,10 @@ exports.createPuzzle = (req, res) => {
         original = new LinkedList();
     }
 
-    // Şimdilik 3 piece düşünelim:
-    elements = [
-        {pieceNum: 1, picUrl: "asd"},
-        {pieceNum: 2, picUrl: "qwe"},
-        {pieceNum: 3, picUrl: "zxc"},
-        {pieceNum: 4, picUrl: "tyu"},
-        {pieceNum: 5, picUrl: "ghj"},
-        {pieceNum: 6, picUrl: "vbn"}
-    ];
-
-    elements.forEach(el => {
-        linkedList.add(new PuzzleModel(el.pieceNum, el.picUrl));
-        original.add(new PuzzleModel(el.pieceNum, el.picUrl));
+    elements = PiecePrep.piecePrep();
+    elements.forEach((val, i) => {
+        linkedList.add(new PuzzleModel(i, val));
+        original.add(new PuzzleModel(i, val));
     });
 
     res.status(200).send(
@@ -58,6 +42,10 @@ exports.shufflePuzzle = (req, res) => {
 
 exports.switchPieces = (req, res) => {
     linkedList.swapNodes(1, 3);
+    Comparator.checkForGame(original, linkedList);
 
-    res.status(200).send(linkedList); 
+    res.status(200).send({
+        "Original": original,
+        "Game": linkedList
+    });
 }
