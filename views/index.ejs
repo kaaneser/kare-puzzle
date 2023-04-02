@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Puzzle Game</title>
+    <title> Square Puzzle Game</title>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -13,6 +13,12 @@
       crossorigin="anonymous"
     />
     <style>
+      body{
+        background-color: rgb(224, 217, 209);
+      }
+      .bold{
+        font-weight: bold;
+      }
       .puzzle-piece {
         position: relative;
         display: inline-block;
@@ -30,15 +36,22 @@
       .highlight {
         border: 3px solid red;
       }
+      .button-color{
+        background-color: #4CAF50;
+      }
+      .button-color:hover{
+        background-color: #3E8E41;
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Puzzle Game</h1>
+      <h1 class="bold"style="text-align: center; margin:4% 0%;">Square Puzzle Game</h1>
       <div class="row">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">Puzzle Image</div>
+          <div class="card text-white bg-dark">
+            <div class="bold card-header">Puzzle Image</div>
             <div class="card-body">
               <img
                 id="puzzle-image"
@@ -48,11 +61,20 @@
               />
             </div>
           </div>
+          <div class="card text-white bg-dark mt-3">
+            <div class="bold card-header">Moves&Score</div>
+            <div class="card-body">
+              <p id="moves">Number of moves:</p>
+              <p id="score">Score:</p>
+            </div>
+          </div>
+          <button id="reset-button" class="button-color btn btn-info mt-3">Reset Puzzle</button>
+          <button id="shuffle-button" class="button-color btn btn-info mt-3">Shuffle Puzzle</button>
         </div>
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">Puzzle Pieces</div>
-            <div class="card-body">
+          <div class="card text-white bg-dark">
+            <div class="bold card-header">Puzzle Pieces</div>
+            <div  class="card-body">
               <% for (var i = 1; i <= 16; i++) { %>
               <div
                 class="puzzle-piece"
@@ -68,13 +90,6 @@
               <% } %>
             </div>
           </div>
-          <div class="card mt-3">
-            <div class="card-header">Timer</div>
-            <div class="card-body">
-              <p id="timer">00:00</p>
-            </div>
-          </div>
-          <button id="reset-button" class="btn btn-primary mt-3">Reset Puzzle</button>
         </div>
       </div>
     </div>
