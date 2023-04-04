@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Square Puzzle Game</title>
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+  />
+  <style>
+  body{
+      background-color: rgb(222, 198, 169);
+    }
+ h1{
+  font-size: 32px;
+ }   
+ h3{
+  font-size:18px;
+ }  
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  border-style:solid;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+input[type="url"] {
+  padding: 0.5rem;
+  border-style:solid;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+button[type="submit"] {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3E8E41;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center; margin:10% 0%; font-weight:bold;">Welcome to the Square Puzzle Game!</h1>
+    <div class="card text-white bg-dark">
+      <h3 class="card-header">Upload a photo or enter a URL and then enter your name to begin:</h3>
+      <br>
+      <div class="card-body">
+        <form  action="/photo" method="POST">
+          <input type="file" id="myFile" name="filename">
+          <button  type="submit">Submit</button>
+        </form>
+        <br>
+        <p>or</p>
+        <form action="/action_page.php">
+          <input type="url" id="homepage" name="homepage"placeholder="Enter URL">
+          <button style="margin-left: 15%;" type="submit">Submit</button>
+        </form>
+        <br>
+        <form  action="/game" method="POST">
+          <input type="text" name="name" placeholder="Your name" required>
+          <button style="margin-left: 10%;" type="submit">Start Game</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div class="card text-white bg-dark">
+      <h3 class="card-header">Best Scores:</h3>
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+
+    </div>
+  </div>
+</body>
+</html>
