@@ -1,13 +1,16 @@
-bashCopy code
-FROM node:18
+FROM node:14
 
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
+COPY package*.json ./
 
-# Install the application dependencies
 RUN npm install
 
-# Define the entry point for the container
+COPY . .
+
+ENV PORT=5000
+ENV NODE_ENV=production
+
+EXPOSE ${PORT}
+
 CMD ["npm", "start"]
