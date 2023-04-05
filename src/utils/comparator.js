@@ -5,7 +5,6 @@ exports.checkForGame = (original, linkedList) => {
 
     while (nodeOne) {
         if (nodeOne.data.pieceNum === nodeTwo.data.pieceNum) {
-            console.log("Matched with ", nodeTwo.data, " equals ", nodeOne.data);
             nodeTwo.data.isLocked = true;
             isReady = true;
         } else {

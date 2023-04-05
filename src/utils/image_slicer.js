@@ -9,7 +9,7 @@ imageToSlices.configure(
     }
 )
 
-const SliceImage = (image_dir, save_dir ="./src/public/image") => {
+const SliceImage = (image_dir="./src/public/image/puzzle.jpg", save_dir ="./src/public/pieces") => {
     let lineXArray = [];
     let lineYArray = [];
 

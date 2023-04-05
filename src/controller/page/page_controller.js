@@ -3,5 +3,5 @@ exports.index = (req, res) => {
 }
 
 exports.start = (req, res) => {
-    res.render('start');
+    res.render('start', {isUploaded: false});
 }
