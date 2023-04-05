@@ -8,6 +8,9 @@
     },
     "author": "Deniz Beltan & Oğuzhan Öztürk & Kaan Eser",
     "license": "ISC",
+    "optionalDependencies": {
+        "fsevents": "*"
+    },
     "dependencies": {
         "body-parser": "^1.20.1",
         "canvas": "^2.11.0",
