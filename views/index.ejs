@@ -55,6 +55,17 @@
     </style>
   </head>
   <body>
+    
+    <!-- Game Over -->
+    <% if (isFinished) { %>
+    <script>
+      window.onload = function() {
+        alert("Well done <%= score.user %>! You got <%= score.score %> points.");
+        window.location.href = '/start';
+      }
+    </script>
+    <% } %>
+
     <div class="container mb-5">
       <h1 class="bold"style="text-align: center; margin:4% 0%;">Square Puzzle Game</h1>
       <div class="row">
@@ -111,9 +122,7 @@
       let switchedNodes = [];
 
       function selectPiece(piece, isLocked) {
-        if (isLocked) {
-          console.log("It's locked, unable to select");
-        } else {
+        if (!isLocked) {
           if (document.getElementById(piece.id).style.border === "1px solid red") {
             switchedNodes = switchedNodes.filter(e => e !== piece.id);
             document.getElementById(piece.id).style.border = "1px solid #4CAF50";

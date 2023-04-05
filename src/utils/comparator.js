@@ -17,3 +17,22 @@ exports.checkForGame = (original, linkedList) => {
 
     return isReady;
 }
+
+exports.isEqual = (original, linkedList) => {
+    let currentNode1 = original.head;
+    let currentNode2 = linkedList.head;
+
+    while (currentNode1 !== null && currentNode2 !== null) {
+        if (currentNode1.data.pieceNum !== currentNode2.data.pieceNum) {
+          return false;
+        }
+        currentNode1 = currentNode1.next;
+        currentNode2 = currentNode2.next;
+    }
+
+    if (currentNode1 === null && currentNode2 === null) {
+        return true;
+    }
+
+    return false;
+}

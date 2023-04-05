@@ -1,3 +1,5 @@
 kaan,10,500
 ozi,20,100
 deniz,10,500
+mahmut,10,50
+eray,12,60
