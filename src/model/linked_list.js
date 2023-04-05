@@ -56,8 +56,6 @@ module.exports = class LinkedList {
   swapNodes(dataOne, dataTwo) {
     if (dataOne === dataTwo) return;
 
-    console.log(dataOne);
-
     let nodeOne = null;
     let nodeTwo = null;
     let current = this.head;
@@ -89,5 +87,17 @@ module.exports = class LinkedList {
     }
 
     return list.trim();
+  }
+
+  getData(position) {
+    if (position < 0) {
+      return null;
+    } else {
+      let current = this.head;
+      for (let i = 0; i < position; i++) {
+        current = current.next;
+      }
+      return current.data.pieceNum;
+    }
   }
 }

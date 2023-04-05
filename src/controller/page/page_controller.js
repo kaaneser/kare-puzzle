@@ -1,7 +1,17 @@
+const CalcScore = require('../../utils/calc_score');
+
 exports.index = (req, res) => {
     res.render('index');
 }
 
 exports.start = (req, res) => {
-    res.render('start', {isUploaded: false});
+    CalcScore.getScores()
+        .then(scores => {
+            console.log(scores);
+            res.render('start', {isUploaded: false, scores: scores});
+        })
+        .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
 }
