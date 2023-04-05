@@ -56,14 +56,16 @@ module.exports = class LinkedList {
   swapNodes(dataOne, dataTwo) {
     if (dataOne === dataTwo) return;
 
+    console.log(dataOne);
+
     let nodeOne = null;
     let nodeTwo = null;
     let current = this.head;
 
     while (current) {
-      if (current.data.pieceNum === dataOne) {
+      if (current.data.pieceNum === parseInt(dataOne)) {
         nodeOne = current;
-      } else if (current.data.pieceNum === dataTwo) {
+      } else if (current.data.pieceNum === parseInt(dataTwo)) {
         nodeTwo = current;
       }
       

@@ -19,8 +19,8 @@
       .puzzle-piece {
         position: relative;
         display: inline-block;
-        max-width: 124px;
-        max-height: 124px;
+        max-width: 25%;
+        max-height: 25%;
         overflow: hidden;
         border: 1px solid #4CAF50;
         float: left;
@@ -55,7 +55,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container mb-5">
       <h1 class="bold"style="text-align: center; margin:4% 0%;">Square Puzzle Game</h1>
       <div class="row">
         <div class="col-md-6">
@@ -64,7 +64,7 @@
             <div class="card-body">
               <img
                 id="puzzle-image"
-                src="sammy.png"
+                src="image/puzzle.jpg"
                 class="img-fluid"
                 alt="Puzzle Image"
               />
@@ -73,35 +73,72 @@
           <div class="card text-white bg-dark mt-3">
             <div class="bold card-header">Moves&Score</div>
             <div class="card-body">
-              <p id="moves">Number of moves:</p>
-              <p id="score">Score:</p>
+              <p id="moves">Number of moves: </p>
+              <p id="score">Score: </p>
             </div>
           </div>
-          <button id="reset-button" class="button-color btn btn-info mt-3">Reset Puzzle</button>
-          <button id="shuffle-button" class="button-color btn btn-info mt-3">Shuffle Puzzle</button>
         </div>
         <div class="col-md-6">
           <div class="card text-white bg-dark">
             <div class="bold card-header">Puzzle Pieces</div>
             <div  class="card-body">
-              <% for (var i = 1; i <= 16; i++) { %>
+              <% var pieces = linkedList.head %>
+              <% while (pieces !== null) { %>
               <div
                 class="puzzle-piece"
-                id="puzzle-piece-<%= i %>"
-                data-index="<%= i %>"
+                id="<%= pieces.data['pieceNum'] %>"
+                data-index="<%= pieces.data['pieceNum'] %>"
+                onclick="selectPiece(this, isLocked = <%= pieces.data['isLocked'] %>)"
+                style="<% if (pieces.data['isLocked']) { %> border: 1px solid grey; <% } %>"
               >
                 <img
-                  src="section-<%= i %>.png"
+                  src="pieces/<%= pieces.data['picUrl'] %>"
                   class="img-fluid"
-                  alt="Puzzle Piece <%= i %>"
+                  alt="Puzzle Piece <%= pieces.data['pieceNum'] %>"
                 />
               </div>
-              <% } %>
+              <% pieces = pieces.next; } %>
             </div>
           </div>
+          <button id="shuffle-button" onclick="shuffle()" class="button-color btn btn-info mt-3" <% if(isShuffled) { %> disabled <% } %>>Shuffle Puzzle</button>
+          <button id="exit-button" onclick="exitGame()" class="btn btn-danger mt-3">Exit Game</button>
         </div>
       </div>
     </div>
+
+    <script>
+      let switchedNodes = [];
+
+      function selectPiece(piece, isLocked) {
+        if (isLocked) {
+          console.log("It's locked, unable to select");
+        } else {
+          if (document.getElementById(piece.id).style.border === "1px solid red") {
+            switchedNodes = switchedNodes.filter(e => e !== piece.id);
+            document.getElementById(piece.id).style.border = "1px solid #4CAF50";
+          } else {
+            switchedNodes.push(piece.id);
+            document.getElementById(piece.id).style.border = "1px solid red";
+          }
+
+          if (switchedNodes.length === 2) {
+            axios.get('/switchPieces?nodeOne='+switchedNodes[0]+'&nodeTwo='+switchedNodes[1]+'&isShuffled=<%= isShuffled %>').then((res) => {
+              window.location.href = '/switchedState';
+            });
+          }
+        }
+      }
+
+      function shuffle() {
+        axios.get('/shufflePuzzle').then((res) => {
+          window.location.href = '/createPuzzle';
+        });
+      }
+
+      function exitGame() {
+        window.location.href = '/start';
+      }
+    </script>
 
     <!-- Bootstrap JS -->
     <script
@@ -119,5 +156,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   </body>
 </html>
