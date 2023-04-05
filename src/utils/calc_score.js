@@ -3,9 +3,6 @@ const fileName = './src/public/score/enyuksekskor.txt';
 
 
 exports.calcScore = (score, original, linkedList, nodeOne, nodeTwo) => {
-    console.log(original.getData(nodeTwo-1));
-    console.log(linkedList.getData(nodeTwo-1));
-
     if (original.getData(nodeTwo-1)  == linkedList.getData(nodeTwo-1) || original.getData(nodeOne-1) == linkedList.getData(nodeOne-1) ) {
         score.score += 5;
     }
@@ -18,7 +15,7 @@ exports.calcScore = (score, original, linkedList, nodeOne, nodeTwo) => {
 exports.saveScore = (score) => {
     let userInfo = `${score.user},${score.moveCount},${score.score}`;
     
-    fs.appendFile(fileName, `${userInfo}\n`, (err) => {
+    fs.appendFile(fileName, `\n${userInfo}`, (err) => {
         if (err) throw err;
     });
 }

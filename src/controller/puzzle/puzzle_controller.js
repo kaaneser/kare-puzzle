@@ -8,6 +8,7 @@ const CalcScore = require('../../utils/calc_score');
 var original = new LinkedList();
 var linkedList = new LinkedList();
 var score = new ScoreModel();
+var isFinished = false;
 
 exports.createPuzzle = async (req, res) => {
     if (linkedList.size !== null) {
@@ -23,7 +24,7 @@ exports.createPuzzle = async (req, res) => {
         original.add(new PuzzleModel(i+1, val));
     });
 
-    res.render('index', { linkedList, score, isShuffled: req.body.isShuffled });
+    res.render('index', { linkedList, score, isShuffled: req.body.isShuffled, isFinished });
 }
 
 exports.shufflePuzzle = (req, res) => {
@@ -34,7 +35,7 @@ exports.shufflePuzzle = (req, res) => {
         isShuffled = Comparator.checkForGame(original, linkedList);
     }
 
-    res.render('index', {linkedList, score, isShuffled});
+    res.render('index', {linkedList, score, isShuffled, isFinished});
 }
 
 exports.switchPieces = (req, res) => {
@@ -43,23 +44,22 @@ exports.switchPieces = (req, res) => {
 
     linkedList.swapNodes(nodeOne, nodeTwo);
     CalcScore.calcScore(score, original, linkedList, nodeOne, nodeTwo);
-    console.log(score);
     Comparator.checkForGame(original, linkedList);
 
-    if (linkedList === original) {
-        console.log("Oyun bitti");
+    if (Comparator.isEqual(original, linkedList)) {
         CalcScore.saveScore(score);
-        alert("oyun bitti");
+        isFinished = true;
     }
 
     res.status(200).send(
         {
             linkedList, 
-            score
+            score,
+            isFinished
         }
     );
 }
 
 exports.switchedState = (req, res) => {
-    res.render('index', {linkedList: linkedList, isShuffled: true, score});
+    res.render('index', {linkedList: linkedList, isShuffled: true, score, isFinished});
 }

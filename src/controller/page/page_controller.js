@@ -7,7 +7,6 @@ exports.index = (req, res) => {
 exports.start = (req, res) => {
     CalcScore.getScores()
         .then(scores => {
-            console.log(scores);
             res.render('start', {isUploaded: false, scores: scores});
         })
         .catch(err => {

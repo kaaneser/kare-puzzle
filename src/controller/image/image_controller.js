@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const imageDownloader = require('image-downloader');
 const ImageSlicer = require('../../utils/image_slicer');
+const CalcScore = require('../../utils/calc_score');
 
 exports.imageFileUpload = (req, res) => {
     const uploadDir = '/../../public/image';
@@ -12,7 +13,14 @@ exports.imageFileUpload = (req, res) => {
 
     uploadedImage.mv(uploadPath).then(() => {
         ImageSlicer.SliceImage().then(() => {
-            res.render('start', {isUploaded: true});
+            CalcScore.getScores()
+            .then(scores => {
+                res.render('start', {isUploaded: true, scores: scores});
+            })
+            .catch(err => {
+                console.error(err);
+                res.sendStatus(500);
+            });
         });
     });
 }
@@ -27,7 +35,14 @@ exports.urlFileUpload = (req, res) => {
     
     imageDownloader.image(options).then(() => {
         ImageSlicer.SliceImage().then(() => {
-            res.render('start', {isUploaded: true});
+            CalcScore.getScores()
+            .then(scores => {
+                res.render('start', {isUploaded: true, scores: scores});
+            })
+            .catch(err => {
+                console.error(err);
+                res.sendStatus(500);
+            });
         });
     });
 }
