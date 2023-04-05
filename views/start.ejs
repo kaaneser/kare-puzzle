@@ -82,8 +82,8 @@ button[type="submit"]:hover {
         </form>
         <br>
         <p>or</p>
-        <form action="/action_page.php">
-          <input type="url" id="homepage" name="homepage"placeholder="Enter URL">
+        <form action="/urlFileUpload" method="POST">
+          <input type="url" name="url" placeholder="Enter URL">
           <button style="margin-left: 15%;" class="<% if (isUploaded === true) { %>non-clickable<% } %>" type="submit">Submit</button>
         </form>
         <br>

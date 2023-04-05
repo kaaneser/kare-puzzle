@@ -9,7 +9,7 @@ imageToSlices.configure(
     }
 )
 
-const SliceImage = (image_dir="./src/public/image/puzzle.jpg", save_dir ="./src/public/pieces") => {
+const SliceImage = async (image_dir="./src/public/image/puzzle.jpg", save_dir ="./src/public/pieces") => {
     let lineXArray = [];
     let lineYArray = [];
 

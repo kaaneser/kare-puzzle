@@ -11,6 +11,7 @@ router.get('/createPuzzle', puzzleController.shufflePuzzle);
 router.get('/switchedState', puzzleController.switchedState);
 
 router.post('/imageFileUpload', imageController.imageFileUpload);
+router.post('/urlFileUpload', imageController.urlFileUpload);
 router.post('/createPuzzle', puzzleController.createPuzzle);
 
 module.exports = router;
