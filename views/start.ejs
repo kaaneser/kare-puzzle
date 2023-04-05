@@ -96,11 +96,12 @@ button[type="submit"]:hover {
     <br>
     <div class="card text-white bg-dark">
       <h3 class="card-header">Best Scores:</h3>
-      <ol>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ol>
+      <ul>
+        <li>isim puan haraket </li>
+        <% for(var i = 0; i < 3; i++) { %>
+          <li> <%=scores[i].name %> : <%=scores[i].score %> : <%=scores[i].moveCount %></li>
+        <% } %>
+      </ul>
 
     </div>
   </div>
