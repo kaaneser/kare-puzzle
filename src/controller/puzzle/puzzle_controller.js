@@ -15,6 +15,7 @@ exports.createPuzzle = async (req, res) => {
         linkedList = new LinkedList();
         original = new LinkedList();
         score = new ScoreModel();
+        isFinished = false;
     }
 
     score.user = req.body.user;
