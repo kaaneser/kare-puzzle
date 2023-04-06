@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dirPath = "\\public\\pieces";
+const dirPath = "/public/pieces";
 
 exports.piecePrep = () => {
     const pieces = [];
