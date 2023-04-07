@@ -29,7 +29,7 @@ Game is hosted at two different cloud platforms in Back4App and Render:
 
 This game made by a group of 3 people:
 |Name|GitHub|LinkedIn|
-|---|---|---|---|---|
+|--|--|--|
 |Deniz Beltan|[GitHub](https://github.com/denizbeltan)|[LinkedIn](https://www.linkedin.com/in/denizbeltan/)|
 |Kaan Yıldırım Eser|[GitHub](https://github.com/kaaneser/)|[LinkedIn](https://www.linkedin.com/in/kaaneser/)|
 |Oğuzhan Öztürk|[GitHub](https://github.com/ozi-dev)|[LinkedIn](https://www.linkedin.com/in/oguzhanozturk0/)|
